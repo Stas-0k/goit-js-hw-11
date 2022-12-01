@@ -1,0 +1,26 @@
+.container {
+    background-color: blue;
+    height: 65px;
+}
+
+input {
+    outline: none;
+    border: 3px solid rgba(68, 0, 255, 0.2);
+    border-radius: 4px;
+    height: 30px;
+    width: 500px;
+    padding: 3px;
+    
+}
+
+.search-form {
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+   margin-top: 10px;
+}
+
+button:hover {
+    background-color: aqua;
+    cursor: pointer;
+}
