@@ -28,15 +28,16 @@ async function onInput(evt) {
   const searchItem = input.value;
   params.q = searchItem;
   const result = await axios(URL, { params });
- 
-  
+   
   if (!result.data.hits.length) {
+    loadButton.style.visibility = 'hidden';
     Notiflix.Notify.failure(
       'Sorry, there are no images matching your search query. Please try again.'
     );
+    return
   }
   
-  renderPhotos(result.data.hits);
+  renderPhotos(result.data.hits);  
 }
 
 
@@ -46,6 +47,7 @@ async function loadFunc() {
   const result = await axios(URL, { params });
   hits += result.data.hits.length
   renderPhotos(result.data.hits);
+  scroll()
   Notiflix.Notify.info(`Hooray! We found ${hits} images.`);
   if (hits === result.data.totalHits) { 
     loadButton.style.visibility = 'hidden';
@@ -81,4 +83,18 @@ function renderPhotos(data) {
   gallery.insertAdjacentHTML('beforeend', markup);
   loadButton.style.visibility = 'visible';
   let gallerySimple = new SimpleLightbox('.item-link', { captionsData: "alt", captionDelay: 250 })
+  gallerySimple.refresh();
 }
+
+
+function scroll() { 
+  const { height: cardHeight } = document
+  .querySelector(".gallery")
+  .firstElementChild.getBoundingClientRect();
+
+window.scrollBy({
+  top: cardHeight * 2,
+  behavior: "smooth",
+});
+}
+
