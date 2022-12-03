@@ -47,6 +47,8 @@ button:hover {
     gap: 5px;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
+    color: black;
 }
 
 .info {
@@ -62,4 +64,8 @@ button:hover {
 
 .load-more{
     visibility: hidden;
+}
+
+a {
+    text-decoration: none;
 }
