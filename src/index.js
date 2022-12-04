@@ -27,6 +27,7 @@ async function onInput(evt) {
   evt.preventDefault();
   const searchItem = input.value;
   params.q = searchItem;
+  params.page = 1; 
   const result = await axios(URL, { params });
    
   if (!result.data.hits.length) {
@@ -75,10 +76,11 @@ function renderPhotos(data) {
     <p class="info-item">
       <b>Downloads: </b>${item.downloads}
     </p>
-  </div>
-  
+  </div>  
 </div>`
-  );
+  ).join(" ")
+
+  console.log(markup)
   
   gallery.insertAdjacentHTML('beforeend', markup);
   loadButton.style.visibility = 'visible';
